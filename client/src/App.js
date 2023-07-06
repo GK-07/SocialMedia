@@ -1,17 +1,27 @@
 import { BrowserRouter, Navigae, Routes, Route } from "react-router-dom";
-import homePage from "scenes/homePage";
-import loginPage from "scenes/loginPage";
-import profilePage from "scenes/profilePage";
-import navbar from "scenes/navbar";
+import HomePage from "scenes/homePage";
+import LoginPage from "scenes/loginPage";
+import ProfilePage from "scenes/profilePage";
+import Navbar from "scenes/navbar";
+import { useSelector } from "react-redux";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "theme";
+import { useMemo } from "react";
 function App() {
+  const mode = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<loginPage />} />
-          <Route path="/home" element={<homePage />} />
-          <Route path="/profile/:userId" element={<profilePage />} />
-        </Routes>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
+          </Routes>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   );
