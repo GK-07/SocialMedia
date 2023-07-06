@@ -14,6 +14,9 @@ import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
+import { users, posts } from "./data/index.js";
+import User from "./models/user.js";
+import Post from "./models/post.js";
 
 /* Configuration  */
 
@@ -64,6 +67,9 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on port hello ${PORT}`);
+      // ONE TIME DATA INSERTION
+      //   User.insertMany(users);
+      //   Post.insertMany(posts);
     });
   })
   .catch((error) => {
