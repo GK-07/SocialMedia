@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
-import { Zoom } from "@mui/material";
+import { Grow } from "@mui/material";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -125,11 +125,11 @@ const Navbar = () => {
 
       {/* Mobile Nav */}
       {!isNonMobileScreen && isMobileMenuToggled && (
-        <Zoom in={isMobileMenuToggled}>
+        <Grow in={isMobileMenuToggled}>
           <Box
             position="fixed"
             right="0"
-            bottom="0"
+            top="5.3rem"
             height="100%"
             zIndex="10"
             maxHeight="500px"
@@ -192,7 +192,7 @@ const Navbar = () => {
               </FormControl>
             </FlexBetween>
           </Box>
-        </Zoom>
+        </Grow>
       )}
     </FlexBetween>
   );
