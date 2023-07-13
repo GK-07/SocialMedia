@@ -14,7 +14,10 @@ const FriendListWidget = ({ userId }) => {
   const getFriends = async () => {
     const response = await fetch(
       `http://localhost:3001/users/${userId}/friends`,
-      { method: "GET", Authorization: `Bearer ${token}` }
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
     );
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
@@ -32,7 +35,7 @@ const FriendListWidget = ({ userId }) => {
         fontWeight="500"
         sx={{ mb: "1.5rem" }}
       >
-        Friend list
+        Friend List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
         {friends.map((friend) => (
@@ -48,4 +51,5 @@ const FriendListWidget = ({ userId }) => {
     </WidgetWrapper>
   );
 };
+
 export default FriendListWidget;
